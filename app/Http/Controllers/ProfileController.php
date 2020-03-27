@@ -56,12 +56,13 @@ class ProfileController extends Controller
         ]); 
 
         
+        //$user->update($data);
         if(request()->has('image')){
-            auth()->user()->update([
+/*             auth()->user()->update([
                 'image' => request()->image->store('uploads', 'public'),
-                ]);
+                ]); */
                 
-                $image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
+               // $image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
                 
                 /***
                  * FOR PRODUCTION SERVER
@@ -70,8 +71,7 @@ class ProfileController extends Controller
                  *  $img->save('storage/'.auth()->user()->image);
                  */
                 
-            //$user->update($data);
-            $image->save();
+           // $image->save();
         }
 
         $msg ='Profile Image uploaded successfully.';
