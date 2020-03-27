@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Str;
 
-$url = parse_url(getenv('DATABASE_URL'));
-$host = $url["host"]?? null;
+$DATABASE_URL = parse_url('postgres://vpaoqqzfjcuefs:936006edfa01a932344fe5dcb31925f497dd54ba5e343bcff44c7e36711f1d89@ec2-50-17-21-170.compute-1.amazonaws.com:5432/da7mbaumigsfhu');
+
+/* $host = $url["host"]?? null;
 $username = $url["user"]?? null;
 $password = $url["pass"]?? null;
-$database = substr($url["path"], 1)?? null;
+$database = substr($url["path"], 1)?? null; */
 
 return [
 
@@ -71,12 +72,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => $DATABASE_URL["host"],
+            'port' => $DATABASE_URL["port"],
+            'database' => ltrim($DATABASE_URL["path"], "/"),
+            'username' => $DATABASE_URL["user"],
+            'password' => $DATABASE_URL["pass"],
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
@@ -84,7 +84,7 @@ return [
             'sslmode' => 'prefer',
         ],
 
-        'pgsql_production' =>[
+/*         'pgsql_production' =>[
             'driver' => 'pgsql',
             'host' => $host,
             'database' => $database,
@@ -94,7 +94,7 @@ return [
             'prefix' => '',
             'schema' => 'public',
 
-        ],
+        ], */
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
