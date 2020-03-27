@@ -55,22 +55,23 @@ class ProfileController extends Controller
             'image' => 'sometimes|file|image|max:5000',
         ]); 
 
-        $user->update($data);
-               
+        
         if(request()->has('image')){
             auth()->user()->update([
                 'image' => request()->image->store('uploads', 'public'),
-            ]);
-
-          //  $image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
-
-
-            $img = Image::make($request->file('image')->getRealPath())->fit(300, 300);
-        
-            $img->save('storage/'.auth()->user()->image);
-             
-
-         //   $image->save();
+                ]);
+                
+                $image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
+                
+                /***
+                 * FOR PRODUCTION SERVER
+                 *  $img = Image::make($request->file('image')->getRealPath())->fit(300, 300);
+                 *
+                 *  $img->save('storage/'.auth()->user()->image);
+                 */
+                
+            $user->update($data);
+            $image->save();
         }
 
         $msg ='Profile Image uploaded successfully.';
