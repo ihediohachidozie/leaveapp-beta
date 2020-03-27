@@ -70,7 +70,7 @@ class ProfileController extends Controller
                  *  $img->save('storage/'.auth()->user()->image);
                  */
                 
-            $user->update($data);
+            //$user->update($data);
             $image->save();
         }
 
