@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 
+//$DATABASE_URL = parse_url('postgres://vpaoqqzfjcuefs:936006edfa01a932344fe5dcb31925f497dd54ba5e343bcff44c7e36711f1d89@ec2-50-17-21-170.compute-1.amazonaws.com:5432/da7mbaumigsfhu');
 $DATABASE_URL = parse_url('postgres://vpaoqqzfjcuefs:936006edfa01a932344fe5dcb31925f497dd54ba5e343bcff44c7e36711f1d89@ec2-50-17-21-170.compute-1.amazonaws.com:5432/da7mbaumigsfhu');
-
 /* $host = $url["host"]?? null;
 $username = $url["user"]?? null;
 $password = $url["pass"]?? null;
