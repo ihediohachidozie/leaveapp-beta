@@ -62,17 +62,18 @@ class ProfileController extends Controller
                 'image' => request()->image->store('uploads', 'public'),
                 ]); 
                 
-               // $image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
+                //$image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
+            $image = Image::make(public_path('storage/' . $customer->image))->fit(300, 300);
                 
                 /***
                  * FOR PRODUCTION SERVER
+                 $img = Image::make($request->file('image')->getRealPath())->fit(300, 300);
+             
+                 $img->save('storage/'.auth()->user()->image);
                  * **/
-                $img = Image::make($request->file('image')->getRealPath())->fit(300, 300);
-            
-                $img->save('storage/'.auth()->user()->image);
                  
                 
-            //$image->save();
+            $image->save();
         }
 
         $msg ='Profile Image uploaded successfully.';
