@@ -62,7 +62,7 @@ class ProfileController extends Controller
                 'image' => request()->image->store('uploads', 'public'),
                 ]); 
                 
-            $image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
+            $image = Image::make(('images/'. auth()->user()->image))->fit(300, 300);
                 // $image = Image::make(public_path('storage/' . $customer->image))->fit(300, 300);
                 
                 /***
