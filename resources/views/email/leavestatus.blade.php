@@ -10,14 +10,6 @@
         @endif
 
     .</p> 
-    <p>
-        @if ($comment)
-            {{
-                'Reason: '. $comment
-            }}
-            
-        @endif
-    </p>
     <p><a href="https://leaveapp.ecmterminals.com">Goto App</a></p>
     <p>Regards...</p>  
     

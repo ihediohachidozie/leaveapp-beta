@@ -272,9 +272,14 @@ class LeaveController extends Controller
     {
         $leave = Leave::find($id);
 
-        $leaveid = Leave::where([['user_id', '=', $leave->user_id], ['status', '=',3], ['year', '=', $leave->year]])->orderBy('created_at')->get('id');
+        $leaveid = Leave::where([
+            ['user_id', '=', $leave->user_id], 
+            ['status', '=',3], 
+            ['year', '=', $leave->year]
+            ])->orderBy('id', 'desc')
+            ->first();
 
-        if($leaveid == $id)
+        if($leaveid->id == $id)
         {
             if(Leave::where([['user_id', '=', $leave->user_id], ['status', '<', 3]])->count() == 0)
             {
@@ -294,11 +299,11 @@ class LeaveController extends Controller
                 return ['message' => 'User has either open, pending or rejected leave form!'];
             }
         }else{
-            return ['message' => 'Only the last applied leave form for a particular leave year can be opened!'];
+            return ['message' => 'Only the last applied leave entry for a particular leave year can be opened!'];
         }
 
 
-
+ 
 
         
     }
@@ -434,7 +439,7 @@ class LeaveController extends Controller
          // return leave approved by user id and year
         if(auth()->id() == 1){
 
-            return Leave::where([['user_id', '=', $id], ['year', '=', $year]])->orderBy('id', 'desc')->paginate(20); 
+            return Leave::where([['user_id', '=', $id], ['year', '=', $year], ['status', '=', 3]])->orderBy('id', 'desc')->paginate(20); 
         }else{
             return Leave::where([['user_id', '=', $id], ['year', '=', $year], ['approval_id', '=', auth()->id()]])->orderBy('id', 'desc')->paginate(20); 
 
@@ -446,7 +451,7 @@ class LeaveController extends Controller
          // return leave approved by year
         if(auth()->id() == 1){
 
-            return Leave::where('year', '=', $year)->orderBy('id', 'desc')->paginate(20); 
+            return Leave::where([['year', '=', $year] ,['status', '=', 3]])->orderBy('id', 'desc')->paginate(20); 
 
         }else{
             return Leave::where([['year', '=', $year], ['approval_id', '=', auth()->id()]])->orderBy('id', 'desc')->paginate(20); 
@@ -458,7 +463,7 @@ class LeaveController extends Controller
          // return leave approved by user id
         if(auth()->id() == 1){
 
-            return Leave::where('user_id', '=', $id)->orderBy('id', 'desc')->paginate(20); 
+            return Leave::where([['user_id', '=', $id],['status', '=', 3]])->orderBy('id', 'desc')->paginate(20); 
         }else{
             return Leave::where([['user_id', '=', $id], ['approval_id', '=', auth()->id()]])->orderBy('id', 'desc')->paginate(20); 
 

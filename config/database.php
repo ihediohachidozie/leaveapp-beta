@@ -18,7 +18,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'pgsql'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -79,18 +79,6 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
-/*         'pgsql_production' =>[
-            'driver' => 'pgsql',
-            'host' => $host,
-            'database' => $database,
-            'username' => $username,
-            'password' => $password,
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-
-        ], */
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
