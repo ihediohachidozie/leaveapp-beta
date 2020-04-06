@@ -62,7 +62,7 @@ class ProfileController extends Controller
                 'image' => request()->image->store('uploads', 'public'),
                 ]); 
                 
-            $image = Image::make(('images/'. auth()->user()->image))->fit(300, 300);
+            // $image = Image::make(('storage/'. auth()->user()->image))->fit(300, 300);
                 // $image = Image::make(public_path('storage/' . $customer->image))->fit(300, 300);
                 
                 /***
@@ -73,10 +73,10 @@ class ProfileController extends Controller
                  * **/
                  
                 
-            $image->save();
+            // $image->save();
         }
 
-        $msg ='Profile Image uploaded successfully.';
+        $msg ='Profile Image uploaded successfully. Image will not change. Lol!';
 
 
         return['message' => $msg];
